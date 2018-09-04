@@ -14,8 +14,8 @@ def compute_error_for_given_points(b, m, points):
     return totalError / float(len(points))
 
 
-def step_gradient(b_current, m_current, points, learningRate):
-    #gradient descent
+def step_gradient(b_current, m_current, points, learning_rate):
+    # gradient descent
     b_gradient = 0
     m_gradient = 0
     N = float(len(points))
@@ -24,8 +24,8 @@ def step_gradient(b_current, m_current, points, learningRate):
         y = points[i, 1]
         b_gradient += -(2/N) * (y - ((m_current * x) + b_current))
         m_gradient += -(2/N) * x * (y - ((m_current * x) + b_current))
-    new_b = b_current - (learningRate * b_gradient)
-    new_m = m_current - (learningRate * m_gradient)
+    new_b = b_current - (learning_rate * b_gradient)
+    new_m = m_current - (learning_rate * m_gradient)
 
     return [new_b, new_m]
 
@@ -40,17 +40,17 @@ def gradient_descent_runner(points, starting_b, starting_m, learning_rate, num_i
     return [b, m]
 
 
-def run():
-    points = genfromtxt('data.csv', delimiter=',')
-    #hyperparameters
-    learning_rate = 0.0001
-    #y = mx + b (slope formula)
-    initial_b = 0
-    initial_m = 0
-    num_iterations = 1000
-    [b, m] = gradient_descent_runner(points, initial_b, initial_m, learning_rate, num_iterations)
-    print(b)
-    print(m)
+    def run():
+        points = genfromtxt('income.csv', delimiter=',')
+        # hyperparameters
+        learning_rate = 0.0001
+        # y = mx + b (slope formula)
+        initial_b = 0
+        initial_m = 0
+        num_iterations = 1000
+        [b, m] = gradient_descent_runner(points, initial_b, initial_m, learning_rate, num_iterations)
+        print("b = %f" % b)
+        print("m = %f" % m)
 
 
 if __name__ == '__main__':
